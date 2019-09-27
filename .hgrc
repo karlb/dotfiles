@@ -1,0 +1,28 @@
+[ui]
+ignore = $HOME/.myconfig/my_hgignore
+interface = curses
+merge = internal:merge3
+
+[extensions]
+color =
+# evolve =  # requires hg >= 4.3
+graphlog = 
+pager = 
+mq =
+record =
+purge =
+shelve =
+rebase =
+
+[pager]
+pager = LESS='FSRX' less
+
+[mq]
+secret = True
+
+[diff]
+git=1
+
+[alias]
+qstatus = status --rev -2:.
+

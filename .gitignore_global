@@ -1,0 +1,9 @@
+.DS_Store
+*.swp
+*.swo
+__pycache__
+venv
+.idea
+.mypy_cache
+.vimrc
+.ignore

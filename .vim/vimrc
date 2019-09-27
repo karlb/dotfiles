@@ -1,0 +1,129 @@
+" Set syntax coloring depending on terminal, assuming xterm means black
+" background, everything else white background.
+if (!has('gui_running')) && (&term == 'xterm')
+	set bg=dark
+else
+	set bg=light
+endif
+
+" Search settings
+set ignorecase
+set smartcase " use together with ignorecase to get desired effect
+set hlsearch
+
+" show status line
+set laststatus=2
+set statusline=%<%f\ %h%m%r\ %y%=%{v:register}\ %-14.(%l,%c%V%)\ %P
+
+" Filetypes
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown  " .md gets detected as modula-2 by default
+
+" enable mouse
+set mouse+=a
+if &term =~ '^screen'
+    " tmux knows the extended mouse mode
+    set ttymouse=xterm2
+endif
+
+" enable project specific vimrc files
+set exrc
+set secure
+
+" set split bar to nicer looking unicode symbol
+set fillchars=vert:│
+
+" Resize splits when the vim window changes in size
+autocmd VimResized * wincmd =
+
+" gvim settings
+set guioptions-=m  "remove menu bar
+set guioptions-=T  "remove toolbar
+
+" ignore some file types for `find` and other commands
+set wildignore+=*.pyc,__pycache__
+
+" Go to last active tab
+au TabLeave * let g:lasttab = tabpagenr()
+nnoremap <silent> <leader>l :exe "tabn ".g:lasttab<cr>
+vnoremap <silent> <leader>l :exe "tabn ".g:lasttab<cr>
+
+" Maintain undo history between sessions
+set undofile
+
+" Keep vim's backup, swap and undofiles in ~/.vim
+set backupdir=~/.vim/tmp/backup
+set directory=~/.vim/tmp/swap//  " double slash avoid name conflicts by including path
+set undodir=~/.vim/tmp/undo
+
+" Allow keeping ctags in .git dir
+set tags^=./.git/tags;
+
+"""""""""""""""" plugin specific setting """""""""""""""""
+
+" Manage packages with minpac
+packadd minpac
+call minpac#init()
+" minpac must have {'type': 'opt'} so that it can be loaded with `packadd`.
+call minpac#add('k-takata/minpac', {'type': 'opt'})
+" Add other plugins here.
+call minpac#add('w0rp/ale')
+call minpac#add('tpope/vim-dispatch')
+call minpac#add('tpope/vim-commentary')
+call minpac#add('tpope/vim-fugitive')
+call minpac#add('tpope/vim-repeat')
+call minpac#add('tpope/vim-sensible')
+call minpac#add('tpope/vim-surround')
+call minpac#add('tpope/vim-tbone')
+call minpac#add('tpope/vim-unimpaired')
+call minpac#add('mhinz/vim-grepper')
+call minpac#add('mhinz/vim-signify')
+call minpac#add('karlb/vim-pytest-traceback')
+call minpac#add('janko-m/vim-test')
+call minpac#add('tmux-plugins/vim-tmux-focus-events')
+call minpac#add('vimwiki/vimwiki')
+" Convenience commands for minpac
+command! PackUpdate call minpac#update()
+command! PackClean call minpac#clean()
+
+" configure VCSs for signify
+let g:signify_vcs_list = ['hg', 'git']
+
+" vimwiki/vimwiki
+let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+
+""" ALE
+" Mappings in the style of unimpaired-next
+nmap <silent> [W <Plug>(ale_first)
+nmap <silent> [w <Plug>(ale_previous)
+nmap <silent> ]w <Plug>(ale_next)
+nmap <silent> ]W <Plug>(ale_last)
+" Show linter name in message
+let g:ale_echo_msg_format = '%s [%linter%]'
+" Open location list on error
+let g:ale_open_list = 0
+let g:ale_fixers = {}
+let g:ale_fixers['*'] = ['remove_trailing_lines', 'trim_whitespace']
+lef g:ale_fixers['md'] = ['remove_trailing_lines']  " trailing whitespace is meaningful
+
+""" Grepper
+let g:grepper = {}
+" set order of default tools
+let g:grepper.tools = ['ag', 'git', 'rg']
+" Search for the current word
+nnoremap <Leader>* :Grepper -cword -noprompt<CR>
+" Search for the current selection
+nmap gs <plug>(GrepperOperator)
+xmap gs <plug>(GrepperOperator)
+" expand 'grep' to 'GrepperAg'
+function! SetupCommandAlias(input, output)
+  exec 'cabbrev <expr> '.a:input
+        \ .' ((getcmdtype() is# ":" && getcmdline() is# "'.a:input.'")'
+        \ .'? ("'.a:output.'") : ("'.a:input.'"))'
+endfunction
+call SetupCommandAlias("grep", "GrepperAg")
+
+""" vim.test
+" Use dispatch.vim to start the test runner
+let test#strategy = "dispatch"
+" Use concise output for pytest when run via vim.test
+let test#python#pytest#options = '-Wignore --tb=short -q'

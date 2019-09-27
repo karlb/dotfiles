@@ -1,0 +1,5 @@
+%include ~/.myconfig/.hgrc
+
+[ui]
+username = Karl Bartel <karl42@gmail.com>
+

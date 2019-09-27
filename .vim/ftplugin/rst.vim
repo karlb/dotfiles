@@ -1,0 +1,2 @@
+set linebreak
+set spell

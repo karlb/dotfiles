@@ -1,0 +1,8 @@
+syntax: glob
+*.pyc
+.vim/.netrwhist
+.vim/tmp/
+.vim/pack/minpac  # ignore packages managed by minpac
+.tmux/bash_history/
+.tmux/resurrect/
+.tmux/plugins/
