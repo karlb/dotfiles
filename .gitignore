@@ -1,0 +1,4 @@
+.tmux
+.vim/.netrwhist
+.vim/pack/
+.vim/tmp/
