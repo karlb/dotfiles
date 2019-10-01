@@ -1,3 +1,5 @@
+shopt -s dotglob  # avoid errors when only ".empty" is in the dir
 for bcfile in ~/.bash_completion.d/* ; do
   . $bcfile
 done
+shopt -u dotglob
