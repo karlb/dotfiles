@@ -12,3 +12,5 @@
 	default = simple
 [init]
 	templatedir = ~/.myconfig/.git_template
+[rebase]
+	autosquash = true
