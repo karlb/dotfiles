@@ -36,5 +36,3 @@ fi
 # allow node to use more memory, see
 # https://stackoverflow.com/questions/38558989/node-js-heap-out-of-memory
 export NODE_OPTIONS=--max_old_space_size=4096
-
-alias open='xdg-open'
