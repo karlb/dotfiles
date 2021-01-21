@@ -1,6 +1,6 @@
 export EDITOR=vim
 export HISTCONTROL=ignoreboth  # uniq entries in history
-export PATH=$PATH:~/.local/bin:/usr/local/bin
+export PATH=~/.local/bin:$PATH:/usr/local/bin
 alias open=xdg-open
 
 # show git repo status in prompt
