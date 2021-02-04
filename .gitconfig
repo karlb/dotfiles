@@ -7,7 +7,7 @@
 	excludesfile = ~/.myconfig/.gitignore_global
 [user]
 	name = Karl Bartel
-	email = mail@karl.berlin
+	email = karl@karl.berlin
 [push]
 	default = simple
 [init]
