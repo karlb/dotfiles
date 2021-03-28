@@ -56,7 +56,7 @@ set directory=~/.vim/tmp/swap//  " double slash avoid name conflicts by includin
 set undodir=~/.vim/tmp/undo
 
 " Allow keeping ctags in .git dir
-set tags^=./.git/tags;
+set tags^=.git/tags;~
 
 """""""""""""""" plugin specific setting """""""""""""""""
 
