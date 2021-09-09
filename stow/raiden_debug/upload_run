@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -e
+if [ $# -lt 1 ]
+then
+	echo "Usage: $(basename "$0") [SCENARIO_RUN_LOG_FILE]"
+	exit 1
+fi
+
+RUN_NUM=$(jq '.run_number | select(.)' "$1" -r)
+SCENARIO=$(basename "$(pwd)")
+TAR_NAME="$SCENARIO"_"$RUN_NUM".tgz
+tar cfz "$TAR_NAME" "$1" node_"$(printf "%04d" "$RUN_NUM")"_*
+echo "$TAR_NAME"
+nautilus "$TAR_NAME"

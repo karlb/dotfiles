@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -e
+if [ $# -lt 1 ]
+then
+	echo "Usage: $(basename "$0") [NODE_ADDRESS]"
+	exit 1
+fi
+
+for server in transport0{1,2,3,4}.raiden.network
+do
+	echo $server && ssh root@$server grep -i "$1" /var/log/presence.log | jq '{timestamp, presence}' -c
+done

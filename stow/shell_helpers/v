@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+set -ex
+
+# Examples
+# file:10
+# file:10:15
+# file:/regex_marker
+
+if [[ $1 =~ ([^:]+):([^:]+)(:([0-9]+))? ]]
+then
+	shift
+	filename="${BASH_REMATCH[1]}"
+	line_or_regex="${BASH_REMATCH[2]}"
+	col="${BASH_REMATCH[4]:-0}"
+	if [[ $line_or_regex =~ [0-9]+ ]]
+	then
+		vim -c "call cursor($line_or_regex,$col)" "$filename" "$@"
+	else
+		vim -c "$line_or_regex" "$filename" "$@"
+	fi
+else
+	vim "$@"
+fi

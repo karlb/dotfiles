@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -e
+if [ $# -ne 0 ]
+then
+	echo "Return the last filename visible in the current tmux pane"
+	echo "Usage: $(basename "$0")"
+	exit 1
+fi
+
+tmux capture-pane -p | fngrep - | tail -1

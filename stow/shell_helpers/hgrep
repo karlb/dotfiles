@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -e
+if [ $# -lt 1 ]
+then
+	echo "Find matches in any bash history"
+	echo "Usage: $(basename "$0") [GREP_OPTION...] PATTERN"
+	exit 1
+fi
+
+grep "$@" ~/.tmux/bash_history/*
