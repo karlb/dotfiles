@@ -40,7 +40,7 @@ set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove toolbar
 
 " ignore some file types for `find` and other commands
-set wildignore+=*.pyc,__pycache__
+set wildignore+=*.pyc,__pycache__,.venv,venv
 
 " Go to last active tab
 au TabLeave * let g:lasttab = tabpagenr()
