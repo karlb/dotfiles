@@ -1,0 +1,36 @@
+# Configure touchpad
+TOUCHPAD=`xinput list --id-only 'Elan Touchpad'`
+xinput set-prop $TOUCHPAD "libinput Natural Scrolling Enabled" 1
+xinput set-prop $TOUCHPAD "libinput Tapping Enabled" 1
+xinput set-prop $TOUCHPAD "libinput Tapping Drag Enabled" 1
+xinput set-prop $TOUCHPAD "libinput Accel Speed" 0.6
+
+# Set layout with umlauts
+#setxkbmap -layout us_de
+xmodmap ~/.Xmodmap
+xbindkeys  # set X keyboard shortcuts from .xbindkeysrc
+
+# dwm status monitor
+slstatus &
+
+# Redshift
+redshift -l 52.5200:13.4050 &
+
+# Lock X after 20 mins (1200 seconds)
+#xautolock -time 20 -locker slock &
+xidlehook --not-when-fullscreen \
+	--timer normal 1190 'xset dpms force off' '' \
+	--timer normal 1200 'slock' '' \
+	&
+
+# Use compton to avoid screen tearing
+compton --backend glx --paint-on-overlay --vsync opengl-swc &
+
+# Set X background
+xsetroot -solid gray
+
+# Start notification server (you can send messages with `notify-send`)
+dunst &
+
+# Enable automounting
+udiskie &
