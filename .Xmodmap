@@ -1,0 +1,5 @@
+keycode 108 = Mode_switch Alt_R
+keycode 39 = s S ssharp
+keycode 38 = a A adiaeresis Adiaeresis
+keycode 30 = u U udiaeresis Udiaeresis
+keycode 32 = o O odiaeresis Odiaeresis

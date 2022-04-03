@@ -6,6 +6,7 @@ ln -sfn ~/.myconfig/.vim ~/.vim
 rm -fr ~/.config/nvim/ && ln -sfn ~/.myconfig/nvim ~/.config/
 ln -sfn ~/.myconfig/.tmux ~/.tmux
 ln -sfn ~/.myconfig/.sqliterc ~/.sqliterc
+ln -sfn ~/.myconfig/.Xmodmap ~/.Xmodmap
 
 # copy templates (should contain an include/source to a file in .myconfig)
 cp -rn ~/.myconfig/templates/.??* ~/
