@@ -1,3 +1,4 @@
+#!/bin/bash
 # install custom .bashrc
 grep -q -F '. ~/.myconfig/.bashrc' ~/.bashrc || echo -e '\n. ~/.myconfig/.bashrc' >> ~/.bashrc
 
