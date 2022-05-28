@@ -4,7 +4,8 @@ grep -q -F '. ~/.myconfig/.bashrc' ~/.bashrc || echo -e '\n. ~/.myconfig/.bashrc
 
 # link config files from ~/.myconfig to ~
 ln -sfn ~/.myconfig/.vim ~/.vim
-rm -fr ~/.config/nvim/ && ln -sfn ~/.myconfig/nvim ~/.config/
+#rm -fr ~/.config/nvim/ && ln -sfn ~/.myconfig/nvim ~/.config/
+ln -sfn ~/.myconfig/nvim ~/.config/
 ln -sfn ~/.myconfig/.tmux ~/.tmux
 ln -sfn ~/.myconfig/.sqliterc ~/.sqliterc
 ln -sfn ~/.myconfig/.Xmodmap ~/.Xmodmap
