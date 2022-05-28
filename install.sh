@@ -8,6 +8,17 @@ ln -sfn ~/.myconfig/.tmux ~/.tmux
 ln -sfn ~/.myconfig/.sqliterc ~/.sqliterc
 ln -sfn ~/.myconfig/.Xmodmap ~/.Xmodmap
 
+# link config files from ~/.myconfig/.config to ~/.config
+for d in ~/.myconfig/.config/*
+do
+	for f in "$d"/*
+	do
+		target_dir=$(dirname ${f/.myconfig/})
+		mkdir -p "$target_dir"
+		ln -sfn "$f" "$target_dir"
+	done
+done
+
 # copy templates (should contain an include/source to a file in .myconfig)
 cp -rn ~/.myconfig/templates/.??* ~/
 
