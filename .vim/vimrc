@@ -58,6 +58,16 @@ set undodir=~/.vim/tmp/undo
 " Allow keeping ctags in .git dir
 set tags^=.git/tags;~
 
+" Diffs: show changes in red/green
+" See https://vi.stackexchange.com/a/25026/9942 (specific)
+" and https://stackoverflow.com/a/17183382/114926 (general)
+" and https://github.com/jeffkreeftmeijer/vim-dim/blob/main/colors/dim.vim
+" (how to create own theme based on vim default)
+hi DiffAdd      ctermfg=NONE          ctermbg=Green
+hi DiffChange   ctermfg=NONE          ctermbg=NONE
+hi DiffDelete   ctermfg=LightBlue     ctermbg=Red
+hi DiffText     ctermfg=Yellow        ctermbg=Red
+
 """""""""""""""" plugin specific setting """""""""""""""""
 
 " Manage packages with minpac
