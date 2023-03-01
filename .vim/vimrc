@@ -121,19 +121,20 @@ lef g:ale_fixers['md'] = ['remove_trailing_lines']  " trailing whitespace is mea
 """ Grepper
 let g:grepper = {}
 " set order of default tools
-let g:grepper.tools = ['ag', 'git', 'rg']
+let g:grepper.tools = ['rg', 'ag', 'git']
 " Search for the current word
 nnoremap <Leader>* :Grepper -cword -noprompt<CR>
 " Search for the current selection
 nmap gs <plug>(GrepperOperator)
 xmap gs <plug>(GrepperOperator)
-" expand 'grep' to 'GrepperAg'
+command! -nargs=+ -complete=file Grep Grepper -noprompt -query <args>
+" expand 'grep' to 'Grepper'
 function! SetupCommandAlias(input, output)
   exec 'cabbrev <expr> '.a:input
         \ .' ((getcmdtype() is# ":" && getcmdline() is# "'.a:input.'")'
         \ .'? ("'.a:output.'") : ("'.a:input.'"))'
 endfunction
-call SetupCommandAlias("grep", "GrepperAg")
+call SetupCommandAlias("grep", "Grep")
 
 """ vim.test
 " Use dispatch.vim to start the test runner
