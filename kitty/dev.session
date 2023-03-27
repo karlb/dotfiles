@@ -1,0 +1,5 @@
+new_tab shell
+launch fish
+
+new_tab vim
+launch fish -c "vim -c 'vertical botright Git' ."

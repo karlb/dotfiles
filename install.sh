@@ -6,6 +6,7 @@ grep -q -F '. ~/.myconfig/.bashrc' ~/.bashrc || echo -e '\n. ~/.myconfig/.bashrc
 ln -sfn ~/.myconfig/.vim ~/.vim
 #rm -fr ~/.config/nvim/ && ln -sfn ~/.myconfig/nvim ~/.config/
 ln -sfn ~/.myconfig/nvim ~/.config/
+ln -sfn ~/.myconfig/kitty ~/.config/
 ln -sfn ~/.myconfig/.tmux ~/.tmux
 ln -sfn ~/.myconfig/.sqliterc ~/.sqliterc
 ln -sfn ~/.myconfig/.Xmodmap ~/.Xmodmap
