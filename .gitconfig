@@ -13,3 +13,13 @@
 	templatedir = ~/.myconfig/.git_template
 [rebase]
 	autosquash = true
+
+[pager]
+	difftool = true
+[difftool]
+	prompt = false
+[diff "pdf"]
+	textconv = sh -c 'pdftotext "$0" -'
+	; textconv = sh -c 'pdftotext -layout -enc UTF-8 "$0" -'
+[difftool "difft"]
+	cmd = difft "$LOCAL" "$REMOTE"
