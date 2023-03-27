@@ -17,6 +17,7 @@ set statusline=%<%f\ %h%m%r\ %y%=%{v:register}\ %-14.(%l,%c%V%)\ %P
 
 " Filetypes
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown  " .md gets detected as modula-2 by default
+"autocmd BufNewFile,BufReadPost *.tsv setfiletype tsv
 
 " enable mouse
 set mouse+=a
