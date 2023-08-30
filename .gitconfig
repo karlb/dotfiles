@@ -1,6 +1,5 @@
 [alias]
-	branch-name = rev-parse --abbrev-ref HEAD
-	publish = "!git push -u origin $(git branch-name)"
+	publish = "!git push -u origin $(git branch --show-current)"
 	recent = "!r(){ git for-each-ref --sort=-committerdate refs/heads --color=always --format='%(HEAD)%(color:yellow)%(refname:short)|%(color:bold green)%(committerdate:relative)|%(color:blue)%(subject)|%(color:magenta)%(authorname)%(color:reset)'|column -ts'|';}; r"
 	recent2 = for-each-ref --sort=-committerdate refs/heads/ --format='%(color:red)%(objectname:short)%(color:reset) %(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
 	fbr = "!git recent | fzf --ansi | git checkout $(awk '{print $1}')"
