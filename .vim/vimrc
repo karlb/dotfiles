@@ -96,6 +96,7 @@ call minpac#add('tmux-plugins/vim-tmux-focus-events')
 call minpac#add('vimwiki/vimwiki')
 call minpac#add('dag/vim-fish')
 call minpac#add('Glench/Vim-Jinja2-Syntax')
+call minpac#add('wsdjeg/vim-fetch')
 " Convenience commands for minpac
 command! PackUpdate call minpac#update()
 command! PackClean call minpac#clean()
