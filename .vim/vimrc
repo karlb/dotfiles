@@ -87,6 +87,7 @@ call minpac#add('tpope/vim-sensible')
 call minpac#add('tpope/vim-surround')
 call minpac#add('tpope/vim-tbone')
 call minpac#add('tpope/vim-unimpaired')
+call minpac#add('tpope/vim-eunuch')
 call minpac#add('mhinz/vim-grepper')
 call minpac#add('mhinz/vim-signify')
 call minpac#add('karlb/vim-pytest-traceback')
@@ -111,6 +112,10 @@ nmap <silent> [W <Plug>(ale_first)
 nmap <silent> [w <Plug>(ale_previous)
 nmap <silent> ]w <Plug>(ale_next)
 nmap <silent> ]W <Plug>(ale_last)
+nmap <silent> gd <Plug>(ale_go_to_definition)
+nmap <silent> gD <Plug>(ale_go_to_implementation)
+nmap <silent> gh <Plug>(ale_go_to_type_definition)
+nmap <silent> gr <Plug>(ale_find_references)
 " Show linter name in message
 let g:ale_echo_msg_format = '%s [%linter%]'
 " Open location list on error
