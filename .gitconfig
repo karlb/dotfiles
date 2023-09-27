@@ -1,6 +1,6 @@
 [alias]
 	default-branch = "!git symbolic-ref refs/remotes/origin/HEAD --short | sed 's|origin/||'"
-	update-default-branch = remote set-head origin --auto
+	update-default-branch = "!git remote update origin && git remote set-head origin --auto"
 	recent = "!r(){ git for-each-ref --sort=-committerdate refs/heads --color=always --format='%(HEAD)%(color:yellow)%(refname:short)|%(color:bold green)%(committerdate:relative)|%(color:blue)%(subject)|%(color:magenta)%(authorname)%(color:reset)'|column -ts'|';}; r"
 	recent2 = for-each-ref --sort=-committerdate refs/heads/ --format='%(color:red)%(objectname:short)%(color:reset) %(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
 	fbr = "!git recent | fzf --ansi | git checkout $(awk '{print $1}')"
