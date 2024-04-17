@@ -88,7 +88,6 @@ call minpac#add('tpope/vim-surround')
 call minpac#add('tpope/vim-tbone')
 call minpac#add('tpope/vim-unimpaired')
 call minpac#add('tpope/vim-eunuch')
-call minpac#add('mhinz/vim-grepper')
 call minpac#add('mhinz/vim-signify')
 call minpac#add('karlb/vim-pytest-traceback')
 call minpac#add('janko-m/vim-test')
@@ -127,23 +126,19 @@ let g:ale_fixers = {}
 let g:ale_fixers['*'] = ['remove_trailing_lines', 'trim_whitespace']
 let g:ale_fixers['md'] = ['remove_trailing_lines']  " trailing whitespace is meaningful
 
-""" Grepper
-let g:grepper = {}
-" set order of default tools
-let g:grepper.tools = ['rg', 'ag', 'git']
-" Search for the current word
-nnoremap <Leader>* :Grepper -cword -noprompt<CR>
-" Search for the current selection
-nmap gs <plug>(GrepperOperator)
-xmap gs <plug>(GrepperOperator)
-command! -nargs=+ -complete=file Grep Grepper -noprompt -query <args>
-" expand 'grep' to 'Grepper'
-function! SetupCommandAlias(input, output)
-  exec 'cabbrev <expr> '.a:input
-        \ .' ((getcmdtype() is# ":" && getcmdline() is# "'.a:input.'")'
-        \ .'? ("'.a:output.'") : ("'.a:input.'"))'
-endfunction
-call SetupCommandAlias("grep", "Grep")
+""" Grep (rg)
+set grepprg=rg\ --vimgrep\ --smart-case
+set grepformat=%f:%l:%c:%m,%f:%l:%m
+
+" open quickfix window after grep
+augroup grep_quickfix
+    autocmd!
+    autocmd QuickFixCmdPost * cwindow
+augroup END
+
+" search for word under cursor
+nnoremap <Leader>* :silent grep '\b<C-r><C-w>\b'<CR>:copen<CR>
+xnoremap <Leader>* "sy:silent grep '\b<C-r>s\b'<CR>:copen<CR>
 
 """ vim.test
 " Use dispatch.vim to start the test runner
