@@ -1,10 +1,12 @@
 #!/bin/bash
 # install custom .bashrc
+touch ~/.bashrc
 grep -q -F '. ~/.myconfig/.bashrc' ~/.bashrc || echo -e '\n. ~/.myconfig/.bashrc' >> ~/.bashrc
 
 # link config files from ~/.myconfig to ~
 ln -sfn ~/.myconfig/.vim ~/.vim
 #rm -fr ~/.config/nvim/ && ln -sfn ~/.myconfig/nvim ~/.config/
+mkdir -p ~/.config
 ln -sfn ~/.myconfig/nvim ~/.config/
 ln -sfn ~/.myconfig/kitty ~/.config/
 ln -sfn ~/.myconfig/fish ~/.config/
