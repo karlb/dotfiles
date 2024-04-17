@@ -108,6 +108,8 @@ let g:signify_vcs_list = ['hg', 'git']
 let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 
 """ ALE
+" Display errors in a nicer way using nvim's diagnostics API
+let g:ale_use_neovim_diagnostics_api = 1
 " Mappings in the style of unimpaired-next
 nmap <silent> [W <Plug>(ale_first)
 nmap <silent> [w <Plug>(ale_previous)
