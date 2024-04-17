@@ -125,7 +125,7 @@ let g:ale_echo_msg_format = '%s [%linter%]'
 let g:ale_open_list = 0
 let g:ale_fixers = {}
 let g:ale_fixers['*'] = ['remove_trailing_lines', 'trim_whitespace']
-lef g:ale_fixers['md'] = ['remove_trailing_lines']  " trailing whitespace is meaningful
+let g:ale_fixers['md'] = ['remove_trailing_lines']  " trailing whitespace is meaningful
 
 """ Grepper
 let g:grepper = {}
