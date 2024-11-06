@@ -137,7 +137,7 @@ augroup grep_quickfix
 augroup END
 
 " search for word under cursor
-nnoremap <Leader>* :silent grep '\b<C-r><C-w>\b'<CR>:copen<CR>
+nnoremap <Leader>* :silent grep '\b<C-r>=expand('<cword>')<CR>\b'<CR>:copen<CR>
 xnoremap <Leader>* "sy:silent grep '\b<C-r>s\b'<CR>:copen<CR>
 
 """ vim.test
