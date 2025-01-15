@@ -5,6 +5,8 @@
 	recent2 = for-each-ref --sort=-committerdate refs/heads/ --format='%(color:red)%(objectname:short)%(color:reset) %(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
 	fbr = "!git recent | fzf --ansi | git checkout $(awk '{print $1}')"
 	showtool = "!showci () { rev=${1:-HEAD}; git difftool $rev~1 $rev; }; showci $1"
+	fetch-rebase = "!git fetch origin $(git default-branch) && git rebase origin/$(git default-branch) --autostash -i"
+	dp = "!git switch $(git default-branch) && git pull"
 [user]
 	name = Karl Bartel
 	email = karl@karl.berlin
