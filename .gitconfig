@@ -27,3 +27,10 @@
 	; textconv = sh -c 'pdftotext -layout -enc UTF-8 "$0" -'
 [difftool "difft"]
 	cmd = difft "$LOCAL" "$REMOTE"
+
+# Options I'm testing from https://jvns.ca/blog/2024/02/16/popular-git-config-options/
+[merge]
+	tool = nvim -d
+	conflictstyle = zdiff3
+[diff]
+	algorithm = histogram
