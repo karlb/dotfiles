@@ -15,6 +15,9 @@
 	templatedir = ~/.myconfig/.git_template
 [rebase]
 	autosquash = true
+[core]
+	attributesfile = /Users/karl/.myconfig/.gitattributes
+	excludesfile = /Users/karl/.myconfig/.gitignore
 
 [diff]
 	tool = difft
