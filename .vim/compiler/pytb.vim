@@ -7,7 +7,7 @@ if exists("current_compiler")
 endif
 let current_compiler = "pytb"
 
-CompilerSet makeprg="python3"
+CompilerSet makeprg=python3
 
 " Vim errorformat cheatsheet:
 " %-G		ignore this message
