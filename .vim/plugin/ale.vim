@@ -14,16 +14,18 @@ nmap <silent> ]w <Plug>(ale_next)
 nmap <silent> ]W <Plug>(ale_last)
 
 " Go to definition
-function! GoToDefinition()
-  if len(filter(lsp#get_allowed_servers(), 'lsp#is_server_running(v:val)')) > 0
-    " Use LSP
-    execute "normal \<Plug>(ale_go_to_definition)"
-  else
-    " Fallback to default behavior
+function! GoToDefinitionFallback()
+  " Try ALE's GoToDefinition
+  let l:current_pos = getpos('.')
+  call GoToDefinition()
+
+  " Check if the cursor position changed
+  if getpos('.') == l:current_pos
+    " If not, fall back to Vim's default gd
     normal! gd
   endif
 endfunction
-nmap <silent> gd :call GoToDefinition()<CR>
+nmap <silent> gd :call GoToDefinitionFallback()<CR>
 " nmap <silent> gd <Plug>(ale_go_to_definition)
 nmap <silent> gD <Plug>(ale_go_to_implementation)
 nmap <silent> gh <Plug>(ale_go_to_type_definition)
