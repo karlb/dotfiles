@@ -13,11 +13,13 @@ nmap <silent> [w <Plug>(ale_previous)
 nmap <silent> ]w <Plug>(ale_next)
 nmap <silent> ]W <Plug>(ale_last)
 
-" Go to definition
+" Go to definition with fallback
 function! GoToDefinitionFallback()
-  " Try ALE's GoToDefinition
+  " Save the current cursor position
   let l:current_pos = getpos('.')
-  call GoToDefinition()
+
+  " Try ALE's GoToDefinition
+  silent! ALEGoToDefinition
 
   " Check if the cursor position changed
   if getpos('.') == l:current_pos
