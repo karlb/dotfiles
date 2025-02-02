@@ -18,8 +18,8 @@
 [rebase]
 	autosquash = true
 [core]
-	attributesfile = /Users/karl/.myconfig/.gitattributes
-	excludesfile = /Users/karl/.myconfig/.gitignore
+	attributesfile = ~/.myconfig/.gitattributes
+	excludesfile = ~/.myconfig/.gitignore
 
 [diff]
 	tool = difft
