@@ -3,3 +3,5 @@
 .vim/pack/
 .vim/tmp/
 .aider*
+.DS_Store
+.nvimrc
