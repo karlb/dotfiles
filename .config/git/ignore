@@ -8,3 +8,4 @@ venv
 .vimrc
 .nvimrc
 .ignore
+**/.claude/settings.local.json
