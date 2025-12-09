@@ -1,5 +1,4 @@
 set fish_greeting
-pyenv init - | source
 
 export PATH="$PATH:/Users/karl/.foundry/bin"
 
