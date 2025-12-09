@@ -2,6 +2,8 @@
 let g:ale_use_neovim_diagnostics_api = 1
 " Completion
 let g:ale_completion_enabled = 1
+" Accept completion with enter key
+inoremap <silent><expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 " Show linter name in message
 let g:ale_echo_msg_format = '%s [%linter%]'
 " Open location list on error
@@ -38,3 +40,9 @@ let g:ale_fixers = {}
 let g:ale_fixers['*'] = ['remove_trailing_lines', 'trim_whitespace']
 let g:ale_fixers['md'] = ['remove_trailing_lines']  " trailing whitespace is meaningful
 let g:ale_fixers['go'] = ['gofmt', 'goimports']
+let g:ale_fixers['rust'] = ['rustfmt']
+
+" Use `cargo fmt` instead of `rustfmt`, so it can read the edition from Cargo.toml
+let g:ale_rust_rustfmt_executable = 'cargo'
+" let g:ale_rust_rustfmt_options = 'fmt --'
+let g:ale_rust_rustfmt_options = '+nightly fmt --all --'
