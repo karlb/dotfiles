@@ -1,0 +1,12 @@
+# Plugin files (managed by fisher or manual install)
+functions/_fzf_*
+functions/fzf_configure_bindings.fish
+functions/bass.fish
+functions/__bass.py
+completions/fzf_configure_bindings.fish
+conf.d/
+
+# Auto-generated completions
+completions/anvil.fish
+completions/cast.fish
+completions/forge.fish
