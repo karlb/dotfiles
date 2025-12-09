@@ -1,1 +1,6 @@
 * merge=mergiraf
+
+# Language-specific diff patterns
+*.go diff=go
+*.rs diff=rust
+*.md diff=markdown
