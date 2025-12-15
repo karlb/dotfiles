@@ -71,6 +71,7 @@ require("lazy").setup({
   "tpope/vim-rhubarb",
   "tpope/vim-dispatch",
   "tpope/vim-eunuch",
+  "wsdjeg/vim-fetch",  -- For opening file:line:col locations and gF command
 
   -- Use `opts = {}` to automatically pass options to a plugin's `setup()` function, forcing the plugin to be loaded.
   -- Alternatively, use `config = function() ... end` for full control over the configuration.
