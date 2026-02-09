@@ -23,7 +23,7 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 
 -- Sets how neovim will display certain whitespace characters in the editor.
-vim.o.list = true
+-- vim.o.list = true
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- [[ Basic Keymaps ]]
@@ -670,5 +670,7 @@ require("lazy").setup({
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   -- { import = 'custom.plugins' },
 })
+
+require("gh-comments")
 
 -- vim: ts=2 sts=2 sw=2 et
