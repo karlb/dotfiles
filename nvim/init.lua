@@ -46,7 +46,15 @@ vim.keymap.set("n", "<A-Up>", ":m .-2<CR>==", { desc = "Move line up" })
 vim.keymap.set("v", "<A-Down>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
 vim.keymap.set("v", "<A-Up>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
+vim.o.autoread = true
+
 -- [[ Basic Autocommands ]]
+
+-- Reload files changed outside of Neovim (e.g. after switching back from another app)
+vim.api.nvim_create_autocmd("FocusGained", {
+  command = "checktime",
+})
+
 
 -- Highlight when yanking (copying) text. Try it with `yap` in normal mode
 vim.api.nvim_create_autocmd("TextYankPost", {
