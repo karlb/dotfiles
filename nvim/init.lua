@@ -138,6 +138,7 @@ require("lazy").setup({
         { "<leader>t", group = "[T]oggle" },
         { "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
         { "<leader>y", group = "[Y]ank" },
+        { "<leader>yf", function() vim.fn.setreg('+', vim.fn.expand('%')) end, desc = "Yank file reference" },
         { "<leader>yl", function() vim.fn.setreg('+', vim.fn.expand('%') .. ':' .. vim.fn.line('.')) end, desc = "Yank file:line reference" },
         { "<leader>yl", function() local s, e = vim.fn.line("'<"), vim.fn.line("'>"); vim.fn.setreg('+', vim.fn.expand('%') .. ':' .. s .. (e ~= s and ('-' .. e) or '')) end, desc = "Yank file:lines reference", mode = "v" },
       },
