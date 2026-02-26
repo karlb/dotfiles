@@ -53,11 +53,12 @@ vim.keymap.set("v", "<A-Down>", ":m '>+1<CR>gv=gv", { desc = "Move selection dow
 vim.keymap.set("v", "<A-Up>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
 vim.o.autoread = true
+vim.o.updatetime = 250
 
 -- [[ Basic Autocommands ]]
 
 -- Reload files changed outside of Neovim (e.g. after switching back from another app)
-vim.api.nvim_create_autocmd("FocusGained", {
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
   command = "checktime",
 })
 
