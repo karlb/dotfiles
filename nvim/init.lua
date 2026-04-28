@@ -51,10 +51,16 @@ vim.o.updatetime = 250
 
 -- [[ Basic Autocommands ]]
 
--- Reload files changed outside of Neovim (e.g. after switching back from another app)
-vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
-  command = "checktime",
+-- Reload files changed outside of Neovim
+vim.api.nvim_create_autocmd("FocusGained", { command = "checktime" })
+vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+  callback = function()
+    if vim.g.vim_focused then vim.cmd("checktime") end
+  end,
 })
+vim.g.vim_focused = true
+vim.api.nvim_create_autocmd("FocusGained", { callback = function() vim.g.vim_focused = true end })
+vim.api.nvim_create_autocmd("FocusLost", { callback = function() vim.g.vim_focused = false end })
 
 
 -- Highlight when yanking (copying) text. Try it with `yap` in normal mode
