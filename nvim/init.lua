@@ -684,6 +684,4 @@ require("lazy").setup({
   -- { import = 'custom.plugins' },
 })
 
-require("gh-comments")
-
 -- vim: ts=2 sts=2 sw=2 et
