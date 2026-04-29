@@ -5,3 +5,5 @@
 .aider*
 .DS_Store
 .nvimrc
+fish/completions
+.vim/spell/*.spl
