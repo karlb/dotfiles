@@ -441,6 +441,8 @@ require("lazy").setup({
       multiline_threshold = 1  -- Maximum number of lines to show for a single context
     }
   }
+}, {
+  install = { colorscheme = { "default" } },
 })
 
 -- vim: ts=2 sts=2 sw=2 et
