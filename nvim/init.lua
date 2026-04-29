@@ -667,6 +667,4 @@ require("lazy").setup({
   install = { colorscheme = { "default" } },
 })
 
-require("gh-comments")
-
 -- vim: ts=2 sts=2 sw=2 et
