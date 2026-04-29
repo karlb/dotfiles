@@ -2,6 +2,9 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- Ensure mise-managed tools (e.g. go) are available to vim.system()
+vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH
+
 -- [[ Setting options ]]
 
 vim.o.background = "light"  -- My terminal has a light background, choose colors accordingly
@@ -87,6 +90,13 @@ rtp:prepend(lazypath)
 -- [[ Configure and install plugins ]]
 --  To check the current status of your plugins, run :Lazy
 require("lazy").setup({
+  {
+    "dchinmay2/alabaster.nvim",
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme("alabaster")
+    end,
+  },
   "NMAC427/guess-indent.nvim", -- Detect tabstop and shiftwidth automatically
   "tpope/vim-fugitive",
   "tpope/vim-rhubarb",
