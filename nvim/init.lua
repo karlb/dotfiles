@@ -52,6 +52,18 @@ vim.keymap.set("n", "<A-Up>", ":m .-2<CR>==", { desc = "Move line up" })
 vim.keymap.set("v", "<A-Down>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
 vim.keymap.set("v", "<A-Up>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
+-- Yank file references to system clipboard
+vim.keymap.set("n", "<leader>yf", function()
+  vim.fn.setreg("+", vim.fn.expand("%"))
+end, { desc = "Yank file reference" })
+vim.keymap.set("n", "<leader>yl", function()
+  vim.fn.setreg("+", vim.fn.expand("%") .. ":" .. vim.fn.line("."))
+end, { desc = "Yank file:line reference" })
+vim.keymap.set("v", "<leader>yl", function()
+  local s, e = vim.fn.line("'<"), vim.fn.line("'>")
+  vim.fn.setreg("+", vim.fn.expand("%") .. ":" .. s .. (e ~= s and ("-" .. e) or ""))
+end, { desc = "Yank file:lines reference" })
+
 vim.o.autoread = true
 vim.o.updatetime = 250
 
@@ -134,17 +146,13 @@ require("lazy").setup({
 
   { -- Useful plugin to show you pending keybinds.
     "folke/which-key.nvim",
-    event = "VimEnter", -- Sets the loading event to 'VimEnter'
+    event = "VimEnter",
     opts = {
-      -- Document existing key chains
       spec = {
         { "<leader>s", group = "[S]earch" },
         { "<leader>t", group = "[T]oggle" },
         { "<leader>h", group = "Git [H]unk", mode = { "n", "v" } },
         { "<leader>y", group = "[Y]ank" },
-        { "<leader>yf", function() vim.fn.setreg('+', vim.fn.expand('%')) end, desc = "Yank file reference" },
-        { "<leader>yl", function() vim.fn.setreg('+', vim.fn.expand('%') .. ':' .. vim.fn.line('.')) end, desc = "Yank file:line reference" },
-        { "<leader>yl", function() local s, e = vim.fn.line("'<"), vim.fn.line("'>"); vim.fn.setreg('+', vim.fn.expand('%') .. ':' .. s .. (e ~= s and ('-' .. e) or '')) end, desc = "Yank file:lines reference", mode = "v" },
       },
     },
   },
