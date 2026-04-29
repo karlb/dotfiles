@@ -103,7 +103,7 @@ require("lazy").setup({
       vim.cmd.colorscheme("alabaster")
     end,
   },
-  "NMAC427/guess-indent.nvim", -- Detect tabstop and shiftwidth automatically
+  { "NMAC427/guess-indent.nvim", opts = {} }, -- Detect tabstop and shiftwidth automatically
   "tpope/vim-fugitive",
   "tpope/vim-rhubarb",
   "tpope/vim-dispatch",
