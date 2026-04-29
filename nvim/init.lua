@@ -365,19 +365,6 @@ require("lazy").setup({
           --  the definition of its *type*, not where it was *defined*.
           map("grt", require("telescope.builtin").lsp_type_definitions, "[G]oto [T]ype Definition")
 
-          -- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
-          ---@param client vim.lsp.Client
-          ---@param method vim.lsp.protocol.Method
-          ---@param bufnr? integer some lsp support methods only in specific files
-          ---@return boolean
-          local function client_supports_method(client, method, bufnr)
-            if vim.fn.has("nvim-0.11") == 1 then
-              return client:supports_method(method, bufnr)
-            else
-              return client.supports_method(method, { bufnr = bufnr })
-            end
-          end
-
           local client = vim.lsp.get_client_by_id(event.data.client_id)
 
           -- The following code creates a keymap to toggle inlay hints in your
@@ -386,7 +373,7 @@ require("lazy").setup({
           -- This may be unwanted, since they displace some of your code
           if
             client
-            and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf)
+            and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf)
           then
             map("<leader>th", function()
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
