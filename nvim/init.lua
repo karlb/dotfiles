@@ -99,7 +99,7 @@ rtp:prepend(lazypath)
 -- [[ Configure and install plugins ]]
 --  To check the current status of your plugins, run :Lazy
 require("lazy").setup({
-  "NMAC427/guess-indent.nvim", -- Detect tabstop and shiftwidth automatically
+  { "NMAC427/guess-indent.nvim", opts = {} }, -- Detect tabstop and shiftwidth automatically
   "tpope/vim-fugitive",
   "tpope/vim-rhubarb",
   "tpope/vim-dispatch",
