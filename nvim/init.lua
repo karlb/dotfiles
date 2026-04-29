@@ -41,10 +41,10 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 -- I'm used to these, but I should probably switch to the standard ]d [d ones
-vim.keymap.set("n", "]w", vim.diagnostic.goto_next, { desc = "Next diagnostic/warning" })
-vim.keymap.set("n", "[w", vim.diagnostic.goto_prev, { desc = "Previous diagnostic/warning" })
-vim.keymap.set("n", "]e", function() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR }) end, { desc = "Next error" })
-vim.keymap.set("n", "[e", function() vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR }) end, { desc = "Previous error" })
+vim.keymap.set("n", "]w", function() vim.diagnostic.jump({ count = 1, float = true }) end, { desc = "Next diagnostic/warning" })
+vim.keymap.set("n", "[w", function() vim.diagnostic.jump({ count = -1, float = true }) end, { desc = "Previous diagnostic/warning" })
+vim.keymap.set("n", "]e", function() vim.diagnostic.jump({ count = 1, float = true, severity = vim.diagnostic.severity.ERROR }) end, { desc = "Next error" })
+vim.keymap.set("n", "[e", function() vim.diagnostic.jump({ count = -1, float = true, severity = vim.diagnostic.severity.ERROR }) end, { desc = "Previous error" })
 
 -- Move lines up and down
 vim.keymap.set("n", "<A-Down>", ":m .+1<CR>==", { desc = "Move line down" })
