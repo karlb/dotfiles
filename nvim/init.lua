@@ -67,18 +67,8 @@ vim.o.updatetime = 250
 -- [[ Basic Autocommands ]]
 
 -- Reload files changed outside of Neovim
-vim.g.vim_focused = true
-vim.api.nvim_create_autocmd("FocusGained", {
-  callback = function()
-    vim.g.vim_focused = true
-    vim.cmd("checktime")
-  end,
-})
-vim.api.nvim_create_autocmd("FocusLost", { callback = function() vim.g.vim_focused = false end })
-vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-  callback = function()
-    if vim.g.vim_focused then vim.cmd("checktime") end
-  end,
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+  command = "checktime",
 })
 
 
