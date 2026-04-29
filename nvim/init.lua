@@ -307,10 +307,7 @@ require("lazy").setup({
       -- Servers must be installed separately (e.g. `go install gopls@latest`,
       -- `rustup component add rust-analyzer`, `uv tool install ruff-lsp`)
       for server_name, server_config in pairs(servers) do
-        local config = vim.tbl_deep_extend("force", {
-          capabilities = vim.tbl_deep_extend("force", {}, capabilities, server_config.capabilities or {}),
-        }, server_config)
-        vim.lsp.config(server_name, config)
+        vim.lsp.config(server_name, vim.tbl_extend("force", { capabilities = capabilities }, server_config))
         vim.lsp.enable(server_name)
       end
     end,
