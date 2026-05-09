@@ -2,6 +2,12 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- Disable netrw (we use Telescope for file navigation). Avoids
+-- E117: Unknown function: netrw#LocalBrowseCheck on BufEnter, which can
+-- happen on recent Neovim where netrw is shipped as an opt pack.
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- [[ Setting options ]]
 
 vim.o.background = "light"  -- My terminal has a light background, choose colors accordingly
@@ -648,6 +654,29 @@ require("lazy").setup({
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require("mini.surround").setup()
+
+      -- Directory browser (replaces netrw, which is disabled in our setup).
+      -- Open mini.files when a directory buffer is entered (e.g. `nvim .`, `:e somedir/`)
+      require("mini.files").setup()
+      vim.keymap.set("n", "-", MiniFiles.open, { desc = "Reopen mini.files (Rex-like)" })
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "MiniFilesBufferCreate",
+        callback = function(args)
+          vim.keymap.set("n", "<Right>", MiniFiles.go_in, { buffer = args.data.buf_id })
+          vim.keymap.set("n", "<S-Right>", function() MiniFiles.go_in({ close_on_file = true }) end, { buffer = args.data.buf_id })
+          vim.keymap.set("n", "<Left>", MiniFiles.go_out, { buffer = args.data.buf_id })
+        end,
+      })
+      vim.api.nvim_create_autocmd("BufEnter", {
+        group = vim.api.nvim_create_augroup("mini-files-dir", { clear = true }),
+        callback = function(args)
+          local path = vim.api.nvim_buf_get_name(args.buf)
+          if path ~= "" and vim.fn.isdirectory(path) == 1 then
+            vim.api.nvim_buf_delete(args.buf, { force = true })
+            MiniFiles.open(path)
+          end
+        end,
+      })
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
