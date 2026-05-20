@@ -19,7 +19,6 @@
 	autosquash = true
 [core]
 	attributesfile = ~/.myconfig/.gitattributes
-	excludesfile = ~/.myconfig/.gitignore
 
 [diff]
 	tool = difft
