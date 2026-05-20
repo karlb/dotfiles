@@ -64,16 +64,12 @@ vim.keymap.set("v", "<leader>yl", function()
   vim.fn.setreg("+", vim.fn.expand("%") .. ":" .. s .. (e ~= s and ("-" .. e) or ""))
 end, { desc = "Yank file:lines reference" })
 
-vim.o.autoread = true
-vim.o.updatetime = 250
-
--- [[ Basic Autocommands ]]
-
 -- Reload files changed outside of Neovim
 vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
   command = "checktime",
 })
-
+vim.o.autoread = true
+vim.o.updatetime = 250
 
 -- Highlight when yanking (copying) text. Try it with `yap` in normal mode
 vim.api.nvim_create_autocmd("TextYankPost", {
