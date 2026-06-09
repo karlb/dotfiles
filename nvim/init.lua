@@ -26,7 +26,7 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 
 -- Sets how neovim will display certain whitespace characters in the editor.
--- vim.o.list = true
+vim.o.list = true
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- [[ Basic Keymaps ]]
