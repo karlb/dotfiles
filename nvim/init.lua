@@ -391,14 +391,6 @@ require("lazy").setup({
     opts = { signs = false },
   },
 
-  -- Highlight other uses of the word under the cursor (LSP → treesitter → regex)
-  {
-    "RRethy/vim-illuminate",
-    config = function()
-      require("illuminate").configure({ filetypes_denylist = { "markdown" } })
-    end,
-  },
-
   { -- Collection of various small independent plugins/modules
     "echasnovski/mini.nvim",
     config = function()
