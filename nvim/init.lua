@@ -45,10 +45,10 @@ vim.keymap.set("n", "]e", function() vim.diagnostic.jump({ count = 1, float = tr
 vim.keymap.set("n", "[e", function() vim.diagnostic.jump({ count = -1, float = true, severity = vim.diagnostic.severity.ERROR }) end, { desc = "Previous error" })
 
 -- Move lines up and down
-vim.keymap.set("n", "<A-Down>", ":m .+1<CR>==", { desc = "Move line down" })
-vim.keymap.set("n", "<A-Up>", ":m .-2<CR>==", { desc = "Move line up" })
-vim.keymap.set("v", "<A-Down>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
-vim.keymap.set("v", "<A-Up>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
+vim.keymap.set("n", "<A-Down>", ":m .+1<CR>", { desc = "Move line down" })
+vim.keymap.set("n", "<A-Up>", ":m .-2<CR>", { desc = "Move line up" })
+vim.keymap.set("v", "<A-Down>", ":m '>+1<CR>gv", { desc = "Move selection down" })
+vim.keymap.set("v", "<A-Up>", ":m '<-2<CR>gv", { desc = "Move selection up" })
 
 -- Yank file references to system clipboard
 vim.keymap.set("n", "<leader>yf", function()
