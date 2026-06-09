@@ -62,6 +62,17 @@ vim.keymap.set("v", "<leader>yl", function()
   vim.fn.setreg("+", vim.fn.expand("%") .. ":" .. s .. (e ~= s and ("-" .. e) or ""))
 end, { desc = "Yank file:lines reference" })
 
+-- Format buffer via LSP, manually and on save
+vim.keymap.set({ "n", "v" }, "<leader>f", function()
+  vim.lsp.buf.format({ async = true })
+end, { desc = "[F]ormat buffer" })
+vim.api.nvim_create_autocmd("BufWritePre", {
+  group = vim.api.nvim_create_augroup("lsp-format-on-save", { clear = true }),
+  callback = function(args)
+    vim.lsp.buf.format({ bufnr = args.buf, timeout_ms = 1000 })
+  end,
+})
+
 -- Reload files changed outside of Neovim
 vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
   command = "checktime",
@@ -296,40 +307,12 @@ require("lazy").setup({
       }
 
       -- Servers must be installed separately (e.g. `go install gopls@latest`,
-      -- `rustup component add rust-analyzer`, `uv tool install ruff-lsp`)
+      -- `rustup component add rust-analyzer`, `uv tool install ruff`)
       for server_name, server_config in pairs(servers) do
         vim.lsp.config(server_name, vim.tbl_deep_extend("force", { capabilities = capabilities }, server_config))
         vim.lsp.enable(server_name)
       end
     end,
-  },
-
-  { -- Autoformat
-    "stevearc/conform.nvim",
-    event = { "BufWritePre" },
-    cmd = { "ConformInfo" },
-    keys = {
-      {
-        "<leader>f",
-        function()
-          require("conform").format({ async = true, lsp_format = "fallback" })
-        end,
-        mode = "",
-        desc = "[F]ormat buffer",
-      },
-    },
-    opts = {
-      notify_on_error = false,
-      format_on_save = function(bufnr)
-        -- Disable format_on_save for languages without a standardized style
-        local disable_filetypes = { c = true, cpp = true }
-        if disable_filetypes[vim.bo[bufnr].filetype] then return end
-        return { timeout_ms = 500, lsp_format = "fallback" }
-      end,
-      formatters_by_ft = {
-        lua = { "stylua" },
-      },
-    },
   },
 
   { -- Autocompletion
