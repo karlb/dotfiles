@@ -101,6 +101,12 @@ require("lazy").setup({
   "tpope/vim-dispatch",
   "tpope/vim-eunuch",
   "wsdjeg/vim-fetch",  -- For opening file:line:col locations and gF command
+  {
+    "vimwiki/vimwiki",
+    init = function()
+      vim.g.vimwiki_list = { { syntax = "markdown", ext = ".md" } }
+    end,
+  },
 
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     "lewis6991/gitsigns.nvim",
@@ -415,7 +421,7 @@ require("lazy").setup({
   { -- Highlight, edit, and navigate code
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    main = "nvim-treesitter.configs", -- Sets main module to use for opts
+    main = "nvim-treesitter",
     opts = {
       auto_install = true,
       highlight = { enable = true },
